@@ -35,7 +35,7 @@ scrape_configs:
       - targets: ['pushgateway:9091']
 
 # sample scrape configuration for AWS EC2
-  - job_name: 'prometheus'
+  - job_name: 'e_prometheus'
     ec2_sd_configs:
       - region: ap-southeast-2
         port: 9090
