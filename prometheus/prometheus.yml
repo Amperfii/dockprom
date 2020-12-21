@@ -36,6 +36,17 @@ scrape_configs:
 
 # sample scrape configuration for AWS EC2
   - job_name: 'e_prometheus'
+    honor_labels: true
+    metrics_path: '/federate'
+
+    params:
+      'match[]':
+        - '{job="prometheus"}'
+        - '{job="entity-server"}'
+        - '{job="elastic"}'
+        - '{job="nodeexporter"}'
+        - '{job="cadvisor"}'
+
     ec2_sd_configs:
       - region: ap-southeast-2
         port: 9090
@@ -44,7 +55,6 @@ scrape_configs:
       - source_labels: [__meta_ec2_tag_Monitoring]
         regex: On
         action: keep
-      
   
 alerting:
   alertmanagers:
