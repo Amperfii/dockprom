@@ -28,8 +28,8 @@ services:
     ports:
       - "9090:9090"
     networks:
-      external:
-        name: amperfii-services
+      amperfii-services:
+        external: true  
     labels:
       org.label-schema.group: "monitoring"
 
@@ -49,8 +49,8 @@ services:
     expose:
       - 9100
     networks:
-      external:
-        name: amperfii-services
+      amperfii-services:
+        external: true  
     labels:
       org.label-schema.group: "monitoring"
 
@@ -68,8 +68,8 @@ services:
     expose:
       - 8080
     networks:
-      external:
-        name: amperfii-services
+      amperfii-services:
+        external: true  
     labels:
       org.label-schema.group: "monitoring"
 
