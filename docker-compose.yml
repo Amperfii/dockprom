@@ -125,6 +125,7 @@ services:
       - "9090:9090"
       - "9093:9093"
       - "9091:9091"
+      - "3100:3100"
     volumes:
       - ./caddy:/etc/caddy
     environment:
@@ -135,3 +136,22 @@ services:
       - monitor-net
     labels:
       org.label-schema.group: "monitoring"
+  loki:
+    image: grafana/loki:2.0.0
+    container_name: loki
+    volumes:
+      - ./loki:/etc/loki
+    expose:
+      - 3100  
+    command: -config.file=/etc/loki/loki-config.yaml
+    networks:
+      - monitor-net    
+  promtail:
+    image: grafana/promtail:2.0.0
+    container_name: promtail
+    volumes:
+      - /var/log:/var/log
+      - ./promtail:/etc/promtail
+    command: -config.file=/etc/promtail/promtail-config.yaml
+    networks:
+      - monitor-net    
