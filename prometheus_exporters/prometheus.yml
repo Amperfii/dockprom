@@ -6,6 +6,7 @@ global:
   # external systems (federation, remote storage, Alertmanager).
   external_labels:
       monitor: 'docker-host-api'
+      hostname: '$HOST'
 
 # Load and evaluate rules in this file every 'evaluation_interval' seconds.
 #rule_files:
