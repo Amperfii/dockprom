@@ -16,3 +16,11 @@ scrape_configs:
     labels:
       job: varlogs
       __path__: /var/log/*log
+- job_name: devops
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: opslogs
+      __path__: /home/ec2-user/logs/* 
+

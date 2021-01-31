@@ -75,8 +75,11 @@ services:
     container_name: promtail
     volumes:
       - /var/log:/var/log
+      - /home/ec2-user/logs:/home/ec2-user/logs
       - ./promtail:/etc/promtail
-    command: -config.file=/etc/promtail/promtail-config.yaml
+    command:
+      - '--config.file=/etc/promtail/promtail-config.yaml'
+      - '--client.external-labels=hostname=${HOST}'
     networks:
       - monitor-net        
 
