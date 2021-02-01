@@ -144,6 +144,7 @@ services:
     expose:
       - 3100  
     command: -config.file=/etc/loki/loki-config.yaml
+    restart: unless-stopped 
     networks:
       - monitor-net    
   promtail:
@@ -153,5 +154,6 @@ services:
       - /var/log:/var/log
       - ./promtail:/etc/promtail
     command: -config.file=/etc/promtail/promtail-config.yaml
+    restart: unless-stopped 
     networks:
       - monitor-net    
