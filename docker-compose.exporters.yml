@@ -80,6 +80,7 @@ services:
     command:
       - '--config.file=/etc/promtail/promtail-config.yaml'
       - '--client.external-labels=hostname=${HOST}'
+    restart: unless-stopped  
     networks:
       - monitor-net        
 
