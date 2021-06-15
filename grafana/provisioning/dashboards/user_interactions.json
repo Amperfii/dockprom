@@ -84,7 +84,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (code) (increase(gin_requests_total{hostname=\"$hostname\", job=\"entity-server\",url=~\"/.*/api/.*/auth/login\"}[15m]))",
+          "expr": "sum by (code) (rate(gin_requests_total{hostname=\"$hostname\", job=\"entity-server\",url=~\"/.*/api/.*/auth/login\"}[15m]))",
           "instant": false,
           "interval": "15m",
           "legendFormat": "{{code}}",
@@ -194,7 +194,7 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "(increase ((gin_requests_total{hostname=\"$hostname\", job=\"entity-server\",method=\"PUT\", handler=\"amperfii-backend/cmd/entity-server/api.UpdateUserProfile\"}[15m])))",
+          "expr": "(rate ((gin_requests_total{hostname=\"$hostname\", job=\"entity-server\",method=\"PUT\", handler=\"amperfii-backend/cmd/entity-server/api.UpdateUserProfile\"}[15m])))",
           "instant": false,
           "interval": "15m",
           "legendFormat": "{{code}}",
@@ -308,7 +308,7 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "label_replace(label_replace (sum by (method) (increase(gin_requests_total{hostname=\"$hostname\", job=\"entity-server\",url=~\"/.*/api/.*/opportu.*\", method=~\"POST|PUT\"}[15m])),\"method\",\"CREATES\",\"method\",\"PUT\"),\"method\",\"UPDATES\",\"method\",\"POST\")",
+          "expr": "label_replace(label_replace (sum by (method) (rate(gin_requests_total{hostname=\"$hostname\", job=\"entity-server\",url=~\"/.*/api/.*/opportu.*\", method=~\"POST|PUT\"}[15m])),\"method\",\"CREATES\",\"method\",\"PUT\"),\"method\",\"UPDATES\",\"method\",\"POST\")",
           "hide": false,
           "instant": false,
           "interval": "15m",
@@ -316,7 +316,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum by (method) (increase(gin_requests_total{hostname=\"$hostname\", job=\"entity-server\",url=~\"/.*/api/.*/opportu.*\", method=~\"POST|PUT\"}[15m]))",
+          "expr": "sum by (method) (rate(gin_requests_total{hostname=\"$hostname\", job=\"entity-server\",url=~\"/.*/api/.*/opportu.*\", method=~\"POST|PUT\"}[15m]))",
           "hide": true,
           "instant": false,
           "interval": "15m",
@@ -420,7 +420,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (method) (increase(gin_requests_total{hostname=\"$hostname\", job=\"entity-server\",url=~\"/.*/api/.*/playbooks-opportunity.*\", method =~\"PUT|POST\"}[15m]))",
+          "expr": "sum by (method) (rate(gin_requests_total{hostname=\"$hostname\", job=\"entity-server\",url=~\"/.*/api/.*/playbooks-opportunity.*\", method =~\"PUT|POST\"}[15m]))",
           "instant": false,
           "interval": "15m",
           "legendFormat": "",
@@ -532,7 +532,7 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "sum by (handler) (increase(gin_requests_total{hostname=\"$hostname\", job=\"entity-server\", method=~\"PUT|POST\", url!~\"/.*/api/.*/auth/.*\", handler!=\"amperfii-backend/internal/pkg/gin-util.ProxyHandler.func1\"}[15m]))",
+          "expr": "sum by (handler) (rate(gin_requests_total{hostname=\"$hostname\", job=\"entity-server\", method=~\"PUT|POST\", url!~\"/.*/api/.*/auth/.*\", handler!=\"amperfii-backend/internal/pkg/gin-util.ProxyHandler.func1\"}[15m]))",
           "hide": false,
           "instant": false,
           "interval": "15m",
@@ -540,7 +540,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum by (method) (increase(gin_requests_total{hostname=\"$hostname\", job=\"entity-server\",url=~\"/.*/api/.*/opportu.*\", method=~\"POST|PUT\"}[15m]))",
+          "expr": "sum by (method) (rate(gin_requests_total{hostname=\"$hostname\", job=\"entity-server\",url=~\"/.*/api/.*/opportu.*\", method=~\"POST|PUT\"}[15m]))",
           "hide": true,
           "instant": false,
           "interval": "15m",

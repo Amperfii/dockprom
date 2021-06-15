@@ -16,8 +16,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 1,
-  "id": 2,
-  "iteration": 1613535998007,
+  "id": 1,
+  "iteration": 1623724227988,
   "links": [],
   "panels": [
     {
@@ -371,7 +371,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(container_memory_usage_bytes{image!=\"\"})",
+          "expr": "sum(container_memory_usage_bytes{image!=\"\",hostname=\"$hostname\"})",
           "interval": "10s",
           "intervalFactor": 2,
           "legendFormat": "",
@@ -937,6 +937,101 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "hiddenSeries": false,
+      "id": 17,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.6",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "up{hostname=\"$hostname\",instance=\"entity-server:7171\"}",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "UpTime",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
       "datasource": "Prometheus",
       "decimals": 2,
       "editable": true,
@@ -954,7 +1049,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 8
+        "y": 16
       },
       "hiddenSeries": false,
       "id": 8,
@@ -988,7 +1083,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (name) (rate(container_cpu_usage_seconds_total{image!=\"\",container_label_org_label_schema_group=\"\"}[1m])) / scalar(count(node_cpu_seconds_total{mode=\"user\"})) * 100",
+          "expr": "sum by (name) (rate(container_cpu_usage_seconds_total{image!=\"\",container_label_org_label_schema_group=\"\", hostname=\"$hostname\"}[1m])) / scalar(count(node_cpu_seconds_total{mode=\"user\"})) * 100",
+          "interval": "",
           "intervalFactor": 10,
           "legendFormat": "{{ name }}",
           "metric": "container_cpu_user_seconds_total",
@@ -1060,7 +1156,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 23
       },
       "hiddenSeries": false,
       "id": 11,
@@ -1167,7 +1263,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 22
+        "y": 30
       },
       "hiddenSeries": false,
       "id": 12,
@@ -1274,7 +1370,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 29
+        "y": 37
       },
       "hiddenSeries": false,
       "id": 13,
@@ -1381,7 +1477,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 44
       },
       "hiddenSeries": false,
       "id": 14,
@@ -1490,30 +1586,9 @@
         "label": null,
         "multi": false,
         "name": "hostname",
-        "options": [
-          {
-            "selected": true,
-            "text": "demo",
-            "value": "demo"
-          },
-          {
-            "selected": false,
-            "text": "dev",
-            "value": "dev"
-          },
-          {
-            "selected": false,
-            "text": "sandbox-del",
-            "value": "sandbox-del"
-          },
-          {
-            "selected": false,
-            "text": "sandbox-nbn",
-            "value": "sandbox-nbn"
-          }
-        ],
+        "options": [],
         "query": "label_values(hostname)",
-        "refresh": 0,
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -1557,5 +1632,5 @@
   "timezone": "browser",
   "title": "Docker Containers",
   "uid": "tPiY4BYGz",
-  "version": 15
+  "version": 8
 }
